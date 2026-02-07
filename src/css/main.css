@@ -1,0 +1,488 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Poppins, sans-serif;
+}
+
+body {
+  height: 100vh;
+  background: #fde6ea;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.intro {
+  text-align: center;
+}
+
+/* ENVELOPE */
+.envelope {
+  position: relative;
+  width: 500px;
+  height: 306px;
+  border-radius: 28px;
+  background: linear-gradient(to bottom, #ff9aac, #ff6f87);
+  box-shadow: 0 25px 45px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+}
+
+/* SMOOTH WHITE FLAP */
+.envelope::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #fff;
+  clip-path: polygon(0 0, 100% 0, 50% 58%);
+}
+
+/* ENTER BUTTON */
+#enterBtn {
+  position: absolute;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 8px 26px;
+  border: none;
+  border-radius: 20px;
+  background: #ff4f6f;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* TEXT */
+h2 {
+  margin-top: 30px;
+  color: #ff5f7e;
+}
+
+/* STACK WRAPPER */
+.stack {
+  position: relative;
+  width: 500px;
+  height: 306px;
+  margin: 0 auto;
+}
+
+/* BACK ENVELOPES */
+.envelope.back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0.6;
+  filter: blur(0.2px);
+}
+
+/* DEPTH POSITIONS */
+.b1 {
+  transform: translate(-8px, -6px);
+}
+
+.b2 {
+  transform: translate(-16px, -12px);
+  opacity: 0.45;
+}
+
+.b3 {
+  transform: translate(-24px, -18px);
+  opacity: 0.3;
+}
+
+/* FRONT ENVELOPE */
+.envelope.front {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 5;
+}
+
+/* ================= FLOATING HEARTS ================= */
+
+.hearts-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 9999;
+}
+
+/* individual heart */
+.heart {
+  position: absolute;
+  bottom: -20px;
+  font-size: 18px;
+  opacity: 0.9;
+  animation: floatUp linear forwards;
+
+  filter: drop-shadow(0 0 6px rgba(255, 105, 180, 0.6));
+}
+
+/* floating animation */
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) scale(0.8);
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 0.9;
+  }
+
+  100% {
+    transform: translateY(-110vh) scale(1.4);
+    opacity: 0;
+  }
+}
+
+/* ================= CARTOON OPEN FLAP ================= */
+
+/* remove old flap from ::before ONLY for front */
+.envelope.front::before {
+  display: none;
+}
+
+/* NEW FLAP ELEMENT */
+.flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60%;
+  background: #fff;
+  clip-path: polygon(0 0, 100% 0, 50% 58%);
+  transform-origin: top center;
+  transition: transform 0.9s ease;
+  z-index: 3;
+}
+
+/* OPEN STATE */
+.stack.open .flap {
+  transform: rotateX(160deg);
+}
+
+/* LIFT EFFECT */
+.stack.open {
+  transform: translateY(-20px) scale(1.03);
+  transition: transform 0.9s ease, opacity 0.9s ease;
+}
+
+/* DISAPPEAR */
+.stack.hide {
+  opacity: 0;
+  transform: translateY(-60px) scale(0.95);
+}
+
+/* ================= STEP 3: GRID ENVELOPES ================= */
+
+.grid {
+  position: fixed;
+  inset: 0;
+  display: none;
+  place-content: center;
+  grid-template-columns: repeat(2, 360px);
+  gap: 50px;
+  z-index: 5;
+}
+
+.grid.show {
+  pointer-events: auto;
+  /* ✅ allow clicks AFTER animation */
+}
+
+/* envelope in grid */
+.env {
+  position: relative;
+  width: 360px;
+  height: 225px;
+  border-radius: 26px;
+  background: linear-gradient(to bottom, #ff9aac, #ff6f87);
+  box-shadow: 0 18px 30px rgba(0, 0, 0, 0.25);
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding-bottom: 28px;
+  color: white;
+  font-weight: 600;
+  opacity: 0;
+  transform: scale(0.6);
+  transition: transform 0.8s ease, opacity 0.8s ease;
+}
+
+/* smooth white flap */
+.env::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #fff;
+  clip-path: polygon(0 0, 100% 0, 50% 58%);
+}
+
+/* text above flap */
+.env span {
+  position: relative;
+  z-index: 2;
+}
+
+/* corner start positions */
+.e1 {
+  transform: translate(-80vw, -80vh) scale(0.6);
+}
+
+.e2 {
+  transform: translate(80vw, -80vh) scale(0.6);
+}
+
+.e3 {
+  transform: translate(-80vw, 80vh) scale(0.6);
+}
+
+.e4 {
+  transform: translate(80vw, 80vh) scale(0.6);
+}
+
+/* when active */
+.grid.show .e1 {
+  transition-delay: 0s;
+}
+
+.grid.show .e2 {
+  transition-delay: 0.25s;
+}
+
+.grid.show .e3 {
+  transition-delay: 0.5s;
+}
+
+.grid.show .e4 {
+  transition-delay: 0.75s;
+}
+
+.grid.show .env {
+  opacity: 1;
+  transform: translate(0, 0) scale(1);
+}
+
+/* ================= STEP 4: MESSAGE OPEN ================= */
+
+.message {
+  position: fixed;
+  inset: 0;
+  display: none;
+  place-content: center;
+  background: transparent;
+}
+
+/* envelope */
+.message-envelope {
+  position: relative;
+  width: 500px;
+  height: 306px;
+  background: linear-gradient(to bottom, #ff9aac, #ff6f87);
+  border-radius: 28px;
+  box-shadow: 0 25px 45px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+}
+
+/* white flap */
+.message-flap {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 60%;
+  background: #fff;
+  clip-path: polygon(0 0, 100% 0, 50% 58%);
+  transform-origin: top center;
+  transition: transform 0.9s ease;
+  z-index: 3;
+}
+
+/* flap open */
+.message.open .message-flap {
+  transform: rotateX(160deg);
+}
+
+/* letter paper */
+.letter-paper {
+  position: absolute;
+  bottom: 22px;
+  left: 50%;
+  transform: translateX(-50%) translateY(40px);
+
+  width: 94%;
+  /* ⬅ wider like ref */
+  height: 64%;
+  /* ⬅ flatter (not tall) */
+
+  background: #fff7b3;
+  border-radius: 16px;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.25);
+
+  opacity: 0;
+  z-index: 2;
+
+  padding: 26px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  transition: transform 1s ease, opacity 0.6s ease;
+}
+
+/* === LETTER LAYOUT LIKE IMAGE === */
+/* 🔒 LOCKED 2-COLUMN LAYOUT */
+.letter-content {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  /* image | text */
+  column-gap: 28px;
+  align-items: center;
+}
+
+.letter-content img {
+  width: 130px;
+  height: 130px;
+  object-fit: cover;
+  border-radius: 14px;
+  filter: brightness(0.98) saturate(1.05);
+}
+
+.letter-content p {
+  font-size: 15px;
+  color: #444;
+  line-height: 1.6;
+  margin: 0;
+  word-break: break-word;
+}
+
+/* slide letter out */
+.message.open .letter-paper {
+  transform: translateX(-50%) translateY(-70px);
+  opacity: 1;
+}
+
+/* ===== STEP 5: LETTER CONTENT ===== */
+
+/* .letter-paper img {
+  width: 120px;
+  border-radius: 12px;
+  margin-bottom: 12px;
+}
+
+.letter-paper p {
+  font-size: 15px;
+  color: #444;
+  line-height: 1.5;
+  min-height: 70px;
+} */
+
+#backBtn {
+  align-self: flex-end;
+  padding: 6px 22px;
+  border-radius: 16px;
+  border: none;
+  background: #ff4f6f;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* highlight next envelope */
+.env.active {
+  transform: scale(1.08);
+  box-shadow: 0 0 35px rgba(255, 105, 180, 0.7);
+  z-index: 10;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* disable opened ones */
+.env.disabled {
+  pointer-events: none;
+}
+
+/* final ending */
+.ending {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  font-size: 32px;
+  font-weight: 600;
+  color: #ff6f87;
+  background: #fde6ea;
+  animation: fadeIn 1.5s ease forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* Message must be above everything */
+.message {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: none;
+  place-items: center;
+  background: rgba(0,0,0,0.15);
+}
+
+/* Disable envelopes click when message is open */
+.message.open ~ .grid .env {
+  pointer-events: none;
+}
+/* ================= FINAL END SCENE ================= */
+
+.end-scene {
+  position: fixed;
+  inset: 0;
+  display: none;
+  place-items: center;
+  background: linear-gradient(135deg, #ffe6eb, #ffd1dc);
+  z-index: 2000;
+  animation: fadeIn 1.2s ease forwards;
+}
+
+.end-card {
+  background: #fff7cc;
+  padding: 40px 50px;
+  border-radius: 24px;
+  text-align: center;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+  animation: riseUp 1.2s ease forwards;
+}
+
+.end-card h1 {
+  font-size: 2.2rem;
+  color: #ff5f87;
+  margin-bottom: 12px;
+}
+
+.end-card p {
+  font-size: 1.1rem;
+  color: #555;
+  line-height: 1.6;
+}
+
+.end-card span {
+  font-size: 2.5rem;
+  display: block;
+  margin-top: 18px;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0 }
+  to { opacity: 1 }
+}
+
+@keyframes riseUp {
+  from { transform: translateY(40px); opacity: 0 }
+  to { transform: translateY(0); opacity: 1 }
+}

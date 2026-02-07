@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>From My Heart</title>
+    <link rel="stylesheet" href="src/css/main.css">
+</head>
+
+<body>
+    <div class="hearts-container"></div>
+    <div class="intro">
+        <div class="stack">
+            <div class="envelope back b3"></div>
+            <div class="envelope back b2"></div>
+            <div class="envelope back b1"></div>
+
+            <div class="envelope front">
+                <div class="flap"></div>
+                <button id="enterBtn">Enter</button>
+            </div>
+        </div>
+        <h2>Something from my heart… 🤍</h2>
+    </div>
+    <!-- STEP 3: MESSAGE ENVELOPES -->
+    <div class="grid" id="grid">
+        <div class="env e1"><span>Just You 🤍</span></div>
+        <div class="env e2"><span>You Matter ✨</span></div>
+        <div class="env e3"><span>A Memory 💫</span></div>
+        <div class="env e4"><span>Still You 💗</span></div>
+    </div>
+    <!-- STEP 4: OPEN MESSAGE -->
+    <div class="message" id="message">
+        <div class="message-envelope">
+            <div class="message-flap"></div>
+            <div class="letter-paper">
+                <div class="letter-content">
+                    <img id="letterImg" />
+                    <p id="letterText"></p>
+                </div>
+                <button id="backBtn">Back</button>
+            </div>
+        </div>
+    </div>
+    <!-- FINAL END SCENE -->
+    <div class="end-scene" id="endScene">
+        <div class="end-card">
+            <h1>That’s All 🤍</h1>
+            <p>
+                Every envelope was a piece of my heart.<br />
+                And if you read till here…<br />
+                You already know — it’s always you.(🐼ZOYA)
+            </p>
+            <span>💖</span>
+        </div>
+    </div>
+    <audio id="bgMusic" loop>
+  <source src="assets/audio/bg_music.mp3" type="audio/mpeg">
+</audio>
+    <script src="src/js/main.js" defer></script>
+</body>
+
+</html>

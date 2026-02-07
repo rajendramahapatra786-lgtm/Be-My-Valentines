@@ -1,0 +1,66 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Poppins, sans-serif;
+}
+
+body {
+  height: 100vh;
+  background: linear-gradient(135deg, #ffe6eb, #ffd1dc);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.love-box {
+  background: white;
+  padding: 40px 50px;
+  border-radius: 22px;
+  text-align: center;
+  box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+}
+
+.love-box h1 {
+  margin-bottom: 30px;
+  color: #ff5f87;
+}
+
+.buttons {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+}
+
+button {
+  padding: 12px 30px;
+  font-size: 18px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+#yesBtn {
+  background: #ff5f87;
+  color: white;
+}
+
+#noBtn {
+  background: #ddd;
+  color: red;
+}
+
+/* SHAKE ANIMATION */
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-6px); }
+  50% { transform: translateX(6px); }
+  75% { transform: translateX(-6px); }
+  100% { transform: translateX(0); }
+}
+
+.shake {
+  animation: shake 0.3s ease;
+}
