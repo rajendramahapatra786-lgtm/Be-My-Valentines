@@ -1,12 +1,26 @@
-const yesBtn = document.getElementById("yesBtn");
-const noBtn = document.getElementById("noBtn");
-const questionText = document.getElementById("questionText");
-const bgMusic = document.getElementById("bgMusic");
+const messages = [
+  "I almost didn’t say any of this…",
+  // "Because some feelings aren’t meant to be rushed.",
+  "But every time I see you, it feels different.",
+  "So this is me… being brave for once.",
+  "Will you be my Valentine? 🤍"
+];
 
+let index = 0;
 let tries = 0;
 let musicStarted = false;
 
-// 🔓 start music on first user interaction (browser-safe)
+const text = document.getElementById("text");
+const nextBtn = document.getElementById("nextBtn");
+const buttons = document.getElementById("buttons");
+const noBtn = document.getElementById("noBtn");
+const bgMusic = document.getElementById("bgMusic");
+
+// initial text
+text.innerText = messages[index];
+
+
+// 🔓 start music on first interaction (browser-safe)
 function startMusic() {
   if (musicStarted) return;
   musicStarted = true;
@@ -21,28 +35,49 @@ function startMusic() {
 document.addEventListener("click", startMusic);
 document.addEventListener("touchstart", startMusic);
 
-// YES → stop music → go to main.html
-yesBtn.addEventListener("click", () => {
+
+// 👉 CONTINUE BUTTON (story flow)
+nextBtn.addEventListener("click", () => {
+  index++;
+
+  if (index < messages.length) {
+    text.innerText = messages[index];
+
+    // last message → show Yes / No
+    if (index === messages.length - 1) {
+      nextBtn.style.display = "none";
+      buttons.style.display = "block";
+    }
+  }
+});
+
+
+// ❤️ YES → stop music → go to next page
+function yesClick() {
   bgMusic.pause();
   bgMusic.currentTime = 0;
 
-  window.location.href = "main.html";
-});
+  text.innerText = "I knew it… ❤️";
 
-// NO → tease 😈
+  setTimeout(() => {
+    window.location.href = "main.html";
+  }, 1200);
+}
+
+
+// 😈 NO → tease & escape
 function moveNoButton() {
   tries++;
 
-  const rect = noBtn.getBoundingClientRect();
-  const offsetX = (Math.random() > 0.5 ? 1 : -1) * (30 + Math.random() * 50);
-  const offsetY = (Math.random() > 0.5 ? 1 : -1) * (20 + Math.random() * 40);
+  const offsetX = (Math.random() > 0.5 ? 1 : -1) * (40 + Math.random() * 60);
+  const offsetY = (Math.random() > 0.5 ? 1 : -1) * (30 + Math.random() * 50);
 
   noBtn.style.position = "absolute";
-  noBtn.style.left = rect.left + offsetX + "px";
-  noBtn.style.top = rect.top + offsetY + "px";
+  noBtn.style.left = offsetX + "px";
+  noBtn.style.top = offsetY + "px";
 
-  if (tries === 6) {
-    questionText.textContent = "Nice try baby😏";
+  if (tries === 5) {
+    text.innerText = "Okay... rude 😤 ";
   }
 }
 
@@ -51,3 +86,19 @@ noBtn.addEventListener("touchstart", (e) => {
   e.preventDefault();
   moveNoButton();
 });
+
+// FULL PAGE ❤️ FLOATING HEARTS
+const heartsContainer = document.querySelector(".hearts");
+const heartEmojis = ["❤️"]; // ONLY this heart
+
+for (let i = 0; i < 40; i++) {
+  const heart = document.createElement("span");
+  heart.textContent = heartEmojis[0];
+
+  heart.style.left = Math.random() * 100 + "vw";        // random X
+  heart.style.fontSize = 12 + Math.random() * 26 + "px"; // random size
+  heart.style.animationDuration = 8 + Math.random() * 12 + "s"; // speed
+  heart.style.animationDelay = Math.random() * 10 + "s"; // stagger
+
+  heartsContainer.appendChild(heart);
+}

@@ -1,24 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <title>Love Express 💌</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
   <link rel="stylesheet" href="src/css/intro.css">
 </head>
-<body>
 
-  <div class="love-box">
-    
-<h1 id="questionText">Can you love me the way I’d love you?🤍</h1>
-    <div class="buttons"> 
-      <button id="yesBtn">Yes ❤️</button>
+<body>
+  <div class="hearts"></div>
+  <div class="love-box card">
+    <p id="text"></p>
+
+    <button id="nextBtn">Continue</button>
+
+    <div id="buttons" style="display:none;">
+      <button onclick="yesClick()">Yes ❤️</button>
       <button id="noBtn">No 💔</button>
     </div>
   </div>
+
   <audio id="bgMusic" loop>
-  <source src="assets/audio/heart.mp3" type="audio/mpeg">
-</audio>
+    <source src="assets/audio/heart.mp3" type="audio/mpeg">
+  </audio>
 
   <script src="src/js/intro.js" defer></script>
 </body>
+
 </html>

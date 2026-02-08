@@ -64,3 +64,79 @@ button {
 .shake {
   animation: shake 0.3s ease;
 }
+/* ===================== */
+/* COMPATIBILITY FIXES  */
+/* ===================== */
+
+/* New text element instead of h1 */
+#text {
+  margin-bottom: 30px;
+  color: #ff5f87;
+  font-size: 26px;
+}
+
+/* New buttons container id */
+#buttons {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+}
+
+/* Apply old button styles to new buttons */
+#buttons button {
+  padding: 12px 30px;
+  font-size: 18px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+/* YES button (no id now, first button) */
+#buttons button:first-child {
+  background: #ff5f87;
+  color: white;
+}
+
+/* NO button still works */
+#noBtn {
+  background: #ddd;
+  color: red;
+}
+/* FULL PAGE FLOATING HEARTS */
+.hearts {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.hearts span {
+  position: absolute;
+  bottom: -40px;              /* start off-screen */
+  font-size: 20px;
+  opacity: 0.8;
+  animation: floatUp linear infinite;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) scale(0.8);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(-120vh) scale(1.2);
+    opacity: 0;
+  }
+}
+
+/* Keep content above hearts */
+.love-box,
+.card {
+  position: relative;
+  z-index: 2;
+}
