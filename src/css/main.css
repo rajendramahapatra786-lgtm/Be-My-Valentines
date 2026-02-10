@@ -38,17 +38,24 @@ body {
 }
 
 /* ENTER BUTTON */
+/* ENTER BUTTON */
 #enterBtn {
   position: absolute;
   bottom: 18px;
   left: 50%;
   transform: translateX(-50%);
-  padding: 8px 26px;
-  border: none;
-  border-radius: 20px;
+
+  min-width: 220px;
+  height: 44px;
+  padding: 12px 36px;
+
   background: #ff4f6f;
   color: white;
-  font-size: 14px;
+  font-size: 16px;
+  font-weight: 500;
+
+  border: none;
+  border-radius: 16px;
   cursor: pointer;
 }
 
@@ -364,28 +371,23 @@ h2 {
 }
 
 /* ===== STEP 5: LETTER CONTENT ===== */
-
-/* .letter-paper img {
-  width: 120px;
-  border-radius: 12px;
-  margin-bottom: 12px;
-}
-
-.letter-paper p {
-  font-size: 15px;
-  color: #444;
-  line-height: 1.5;
-  min-height: 70px;
-} */
-
 #backBtn {
-  align-self: flex-end;
-  padding: 6px 22px;
-  border-radius: 16px;
-  border: none;
-  background: #ff4f6f;
-  color: #fff;
+  width: auto;              /* 🔥 key line */
+  min-width: 220px;         /* control button width */
+  max-width: 260px;
+
+  padding: 12px 32px;       /* height + pill look */
+  border-radius: 999px;     /* perfect pill */
+
+  background: #ff5f87;
+  color: white;
+
+  font-size: 16px;
+  font-weight: 600;
   cursor: pointer;
+
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* highlight next envelope */
@@ -486,3 +488,4 @@ h2 {
   from { transform: translateY(40px); opacity: 0 }
   to { transform: translateY(0); opacity: 1 }
 }
+
