@@ -77,7 +77,7 @@ function moveNoButton() {
   noBtn.style.top = offsetY + "px";
 
   if (tries === 5) {
-    text.innerText = "Okay... rude 😤 ";
+    text.innerText = "Ouch... that hurt 😔";
   }
 }
 
